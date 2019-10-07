@@ -1,0 +1,47 @@
+{{define "title"}}
+  Boatswain Blog | {{index . "name"}}
+{{end}}
+
+{{define "body"}}
+  <h1>{{index . "msg"}}</h1>
+  <h2>This is the about page.</h2>
+
+  <!-- HTML form -->
+  <form id="post-full-name-form">
+    <input type="text" id="first-name" placeholder="First Name">
+    <input type="text" id="last-name" placeholder="Last Name">
+    <button type="button" id="submit-btn">Submit</button>
+  </form>
+
+  <!-- Print the response after the jQuery ajax request -->
+  <pre id="form-result"></pre>
+
+  <script type="text/javascript">
+    // Send a ajax request when the submit button is clicked
+    $("#submit-btn").on("click", function(e){
+      e.preventDefault()
+      var firstName = $("#first-name").val();
+      var lastName = $("#last-name").val();
+
+      $.ajax({
+        type: "POST",
+        url: "/api/post-full-name",
+        data: JSON.stringify({
+          first_name: firstName,
+          last_name: lastName
+        }),
+        processData: false,
+        contentType: "application/json",
+        dataType: "json"
+      }).done(
+        function(data){
+          $("#form-result").text(JSON.stringify(data, null, 2));
+        }
+      ).fail(
+        function(data){
+          $("#form-result").text("POST request failed!");
+        }
+      )
+    });
+  </script>
+{{end}}
