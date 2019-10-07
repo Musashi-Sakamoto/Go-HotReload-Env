@@ -7,7 +7,7 @@ import (
 
 func BasicAuth() echo.MiddlewareFunc {
 	return middleware.BasicAuth(func(username string, password string, context echo.Context) (bool, error) {
-		if username == "joe" && password == "correct" {
+		if username == "musashi" && password == "password" {
 			return true, nil
 		}
 		return false, nil

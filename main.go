@@ -16,7 +16,9 @@ func main() {
 	AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept},
   }))
 
-  e.GET("/hello/:username", handler.MainPage(), interceptor.BasicAuth())
+  g := e.Group("/admin")
+  g.Use(interceptor.BasicAuth())
+  g.GET("/hello/:username", handler.MainPage())
 
   e.Start(":1323")
 }
