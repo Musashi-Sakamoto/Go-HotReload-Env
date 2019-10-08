@@ -1,6 +1,10 @@
 package model
 
+import (
+	"github.com/jinzhu/gorm"
+)
+
 type User struct {
-	Id int `gorm:"AUTO_INCREMENT"`
+	gorm.Model
 	Name string `gorm:"type:varchar(50);"`
 }

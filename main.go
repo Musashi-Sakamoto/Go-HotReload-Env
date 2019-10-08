@@ -24,6 +24,7 @@ func main() {
   g.GET("/hello/:username", handler.MainPage())
 
   e.POST("/users", handler.CreateUser)
+  e.GET("/users", handler.ListUser)
 
   e.Start(":1323")
 }

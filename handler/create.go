@@ -16,6 +16,6 @@ func CreateUser(c echo.Context) error {
 		return err
 	}
 	u.Name = "test"
-	db.Table("User").Create(&u)
+	db.Create(&u)
 	return c.JSON(http.StatusCreated, u)
 }
